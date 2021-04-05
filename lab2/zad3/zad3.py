@@ -95,6 +95,8 @@ class Circuit:
                 self.dgraph.add_edge(y,x, I=math.inf)
             else:
                 n_from, n_to = edge['n_from'], edge['n_to']
+                if n_from == -1 or n_to == -1:
+                    n_from, n_to = x,y
                 i = round(I[edge['id']], 2)
                 if i < 0:
                     i *= -1
@@ -114,7 +116,7 @@ class Circuit:
         plt.show()
         
 while 1:    
-    generate_grid(5)
+    generate_small_world(15)
     test = Circuit("graph.txt")
     test.draw_result()
 
